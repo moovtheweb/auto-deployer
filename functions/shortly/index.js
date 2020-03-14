@@ -23,13 +23,13 @@ app.use(function (req, res, next) {
 app.post("/shorturl", async (req, res, next) => {
     // The kind for the new entity
     const kind = 'ShortURL';
-
+    
     // The name/ID for the new entity
     const name = base64encode(new Date().getTime()) + "";
 
     // The Cloud Datastore key for the new entity
     const surlKey = datastore.key([kind, name]);
-
+    console.log("kind+name" + kind +"+"+name+"surlkey"+surKey)
     // Prepares the new entity
     const surl = {
         key: surlKey,
@@ -39,7 +39,7 @@ app.post("/shorturl", async (req, res, next) => {
             user: 'Unknown'
         },
     };
-
+    console.log("surl=>"+surl)
     try {
         // Saves the entity
         await datastore.save(surl);
