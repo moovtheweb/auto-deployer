@@ -29,7 +29,7 @@ app.post("/shorturl", async (req, res, next) => {
 
     // The Cloud Datastore key for the new entity
     const surlKey = datastore.key([kind, name]);
-    console.log("kind+name" + kind +"+"+name+"surlkey"+surKey)
+    console.log("kind+name" + kind +"+"+name+"surlkey"+surlKey)
     // Prepares the new entity
     const surl = {
         key: surlKey,
