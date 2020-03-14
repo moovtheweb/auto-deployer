@@ -18,7 +18,7 @@ appred.use(function (req, res, next) {
     next();
 });
 
-appred.get("/app/:shorturl",async (req,res,next)=>{
+appred.get("/appred/:shorturl",async (req,res,next)=>{
     console.log("shorturl ==> " + req.params.shorturl)
     const shorturl = req.params.shorturl
 
