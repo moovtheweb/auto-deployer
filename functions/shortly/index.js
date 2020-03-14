@@ -46,7 +46,7 @@ app.post("/shorturl", async (req, res, next) => {
         await datastore.save(surl);
         console.log(`Saved ${surl.data.shortURL}: ${surl.data.longurl}`);
         req.surl = surl;
-        res.status(201).send(surl)
+        res.status(201).send(surl.data)
     } catch (error) {
         console.log("error" + error)
         res.status(400).send()
