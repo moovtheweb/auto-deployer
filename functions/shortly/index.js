@@ -47,7 +47,7 @@ app.post("/shorturl", async (req, res, next) => {
         // Saves the entity
         await datastore.save(surl);
         console.log(`Saved ${surl.data.shortURL}: ${surl.data.longurl}`);
-        req.surl = `{ ${surl.key.name} : ${surl.data.longurl} }`;
+        req.surl = `{"shorturl": ${surl.key.name}, "longurl": ${surl.data.longurl} }`;
         res.status(201).send(surl.data)
     } catch (error) {
         console.log("error" + error)
