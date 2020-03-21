@@ -1,5 +1,6 @@
 const express = require('express')
 const { Datastore } = require('@google-cloud/datastore');
+const { PubSub } = require('@google-cloud/pubsub');
 const { base64encode, base64decode } = require('nodejs-base64')
 const yearInTimeMillis = 31556952
 
@@ -54,9 +55,27 @@ app.post("/shorturl", async (req, res, next) => {
     next();
 })
 
+// Creates a client; cache this for further use
+const pubSubClient = new PubSub();
+
+async function publishMessage(surl) {
+  /**
+   * TODO(developer): Uncomment the following lines to run the sample.
+   */
+const topicName = 'shorturl';
+
+  // Publishes the message as a string, e.g. "Hello, world!" or JSON.stringify(someObject)
+  const dataBuffer = Buffer.from(surl);
+
+  const messageId = await pubSubClient.topic(topicName).publish(dataBuffer);
+  console.log(`Message ${messageId} published.`);
+}
+
+
 app.use(function (req, res, next) {
     console.log("after");
     console.log(req.surl)
+    publishMessage(req.surl).catch(console.error);
     next();
 });
 
