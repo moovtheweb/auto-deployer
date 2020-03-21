@@ -1,3 +1,4 @@
+
 const express = require('express')
 const { Datastore } = require('@google-cloud/datastore');
 const { PubSub } = require('@google-cloud/pubsub');
@@ -65,7 +66,7 @@ async function publishMessage(surl) {
 const topicName = 'shorturl';
 
   // Publishes the message as a string, e.g. "Hello, world!" or JSON.stringify(someObject)
-  const dataBuffer = Buffer.from(surl);
+  const dataBuffer = Buffer.from(JSON.stringify(surl));
 
   const messageId = await pubSubClient.topic(topicName).publish(dataBuffer);
   console.log(`Message ${messageId} published.`);
