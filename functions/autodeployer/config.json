@@ -1,0 +1,23 @@
+{
+  "secretToken" : "iamworkingontherailroadnight&daynight&day",
+  "stageBucket" : "mtw-staging-storage",
+  "location" : "us-central1",
+  "deployments": [
+    {
+      "repository":"moovtheweb/auto-deployer",
+      "path":"functions/func-hello",
+      "functionName":"hellohttp"
+    },
+    {
+      "repository":"moovtheweb/auto-deployer",
+      "path":"functions/shortly",
+      "functionName":"app"
+    },
+    {
+      "repository":"moovtheweb/auto-deployer",
+      "path":"functions/shortly-red",
+      "functionName":"appred"
+    }
+  ]
+}
+
